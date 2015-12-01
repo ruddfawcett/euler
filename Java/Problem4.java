@@ -15,10 +15,8 @@ public class Problem4 {
     for (int i = min; i <= max; i++) {
       for (int j = min; j <= max; j++) {
         int mult = i * j;
-        String string = Integer.toString(mult);
-        StringBuffer buffer = new StringBuffer(string);
 
-        if (string.equals(new String(buffer.reverse()))) {
+        if (palindrome(mult)) {
           if (mult > largest) {
             largest = mult;
           }
@@ -27,5 +25,24 @@ public class Problem4 {
     }
 
     System.out.print(largest);
+  }
+
+  public static boolean palindrome(int num) {
+    int backwards = 0;
+    int original = num;
+
+    if (num < 10) {
+      return true;
+    }
+    if (num % 10 == 0) {
+      return false;
+    }
+
+    while (num >= 1) {
+      backwards = (backwards * 10) + (num % 10);
+      num /= 10;
+    }
+
+    return (original == backwards);
   }
 }
